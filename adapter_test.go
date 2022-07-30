@@ -238,7 +238,7 @@ func testUpdateFilteredPolicies(t *testing.T, a *Adapter) {
 	e, _ := casbin.NewEnforcer("examples/rbac_model.conf", a)
 
 	e.EnableAutoSave(true)
-	e.UpdateFilteredPolicies([][]string{{"alice", "data1", "write"}}, 0, "alice", "data1", "read")
+	e.UpdateFilteredPolicies([][]string{{"alice", "data1", "write"}}, 0, "alice", "", "read")
 	e.UpdateFilteredPolicies([][]string{{"bob", "data2", "read"}}, 0, "bob", "data2")
 	e.LoadPolicy()
 	testGetPolicyWithoutOrder(t, e, [][]string{{"alice", "data1", "write"}, {"data2_admin", "data2", "read"}, {"data2_admin", "data2", "write"}, {"bob", "data2", "read"}})
